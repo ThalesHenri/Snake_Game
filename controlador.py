@@ -26,3 +26,24 @@ UP = 0
 DOWN = 1
 LEFT = 2
 RIGHT = 3
+
+my_direction = LEFT
+
+pygame.init()
+
+"""Screen"""
+SCREEN = pygame.display.set_mode((600, 600))
+pygame.display.set_caption('Snake Game')
+
+clock = pygame.time.Clock()  # this will be our clock object
+
+run = True
+
+# Game loop
+while run:
+    clock.tick(10)  # our clock object will set the game fps
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+    SCREEN.fill(BLACK)
+    pygame.display.update()
