@@ -1,3 +1,5 @@
+from snake import Snake
+from apple import Apple 
 import pygame, random
 from pygame.locals import *
 
@@ -20,14 +22,6 @@ BLACK = 0, 0, 0
 WHITE = 255, 255, 255
 RED = 255, 0, 0
 
-"""Directions"""
-
-UP = 0
-DOWN = 1
-LEFT = 2
-RIGHT = 3
-
-my_direction = LEFT
 
 pygame.init()
 
@@ -35,8 +29,10 @@ pygame.init()
 SCREEN = pygame.display.set_mode((600, 600))
 pygame.display.set_caption('Snake Game')
 
+"""Pygame Objects"""
 clock = pygame.time.Clock()  # this will be our clock object
-
+self.snake_skin.fill(WHITE)
+self.apple.fill(RED)
 run = True
 
 # Game loop
@@ -46,4 +42,6 @@ while run:
         if event.type == QUIT:
             pygame.quit()
     SCREEN.fill(BLACK)
+    for pos in self.snake_skin:
+        SCREEN.blit(self.snake_skin, pos)
     pygame.display.update()
