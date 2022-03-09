@@ -1,6 +1,7 @@
 from snake import Snake
 from apple import Apple 
-import pygame, random
+import pygame
+import random
 from pygame.locals import *
 
 """Functions"""
@@ -30,9 +31,10 @@ SCREEN = pygame.display.set_mode((600, 600))
 pygame.display.set_caption('Snake Game')
 
 """Pygame Objects"""
+
 clock = pygame.time.Clock()  # this will be our clock object
-self.snake_skin.fill(WHITE)
-self.apple.fill(RED)
+
+
 run = True
 
 # Game loop
@@ -40,8 +42,6 @@ while run:
     clock.tick(10)  # our clock object will set the game fps
     for event in pygame.event.get():
         if event.type == QUIT:
-            pygame.quit()
+            pygame.quit()     
     SCREEN.fill(BLACK)
-    for pos in self.snake_skin:
-        SCREEN.blit(self.snake_skin, pos)
     pygame.display.update()
