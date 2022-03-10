@@ -33,6 +33,8 @@ pygame.display.set_caption('Snake Game')
 """Pygame Objects"""
 
 clock = pygame.time.Clock()  # this will be our clock object
+obj = Snake()
+
 
 
 run = True
@@ -42,6 +44,9 @@ while run:
     clock.tick(10)  # our clock object will set the game fps
     for event in pygame.event.get():
         if event.type == QUIT:
-            pygame.quit()     
+            pygame.quit()
     SCREEN.fill(BLACK)
+    obj.snake_skin.fill(WHITE)
+    for pos in obj.snake_body:
+        SCREEN.blit(obj.snake_skin, pos)
     pygame.display.update()
