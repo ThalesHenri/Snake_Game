@@ -17,6 +17,7 @@ def onGrid_random_spawn():
     return (x // 10 * 10) and (y // 10 * 10)
 
 
+
 """Colors"""
 
 BLACK = 0, 0, 0
@@ -33,8 +34,7 @@ pygame.display.set_caption('Snake Game')
 """Pygame Objects"""
 
 clock = pygame.time.Clock()  # this will be our clock object
-obj = Snake()
-
+obj = Snake()  # this will be our snake object
 
 
 run = True
@@ -45,6 +45,31 @@ while run:
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
+        if event.type == KEYDOWN:
+            if event.key == K_UP and obj.snake_direction != obj.DOWN:
+                obj.snake_direction = obj.UP
+            if event.key == K_DOWN and obj.snake_direction != obj.UP:
+                obj.snake_direction = obj.DOWN
+            if event.key == K_LEFT and obj.snake_direction != obj.RIGHT:
+                obj.snake_direction = obj.LEFT
+            if event.key == K_RIGHT and obj.snake_direction != obj.LEFT:
+                obj.snake_direction = obj.RIGHT
+    for c in range(len(obj.snake_body) - 1, 0, -1):
+        obj.snake_body[c] = (obj.snake_body[c - 1][0],
+        obj.snake_body[c - 1][1])
+
+    if obj.snake_direction == obj.UP:
+        obj.snake_body[0] = (obj.snake_body[0][0],
+        obj.snake_body[0][1] - 10)
+    if obj.snake_direction == obj.DOWN:
+        obj.snake_body[0] = (obj.snake_body[0][0],
+        obj.snake_body[0][1] + 10)
+    if obj.snake_direction == obj.RIGHT:
+        obj.snake_body[0] = (obj.snake_body[0][0] + 10, obj.snake_body[0][1])
+    if obj.snake_direction == obj.LEFT:
+        obj.snake_body[0] = (obj.snake_body[0][0] - 10, obj.snake_body[0][1])
+
+
     SCREEN.fill(BLACK)
     obj.snake_skin.fill(WHITE)
     for pos in obj.snake_body:
