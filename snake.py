@@ -11,20 +11,4 @@ class Snake:
         self.UP = 0
         self.snake_direction = self.LEFT
 
-    def turn_up(x):
-        self.snake_body[0] = (self.snake_body[0][0],
-        self.snake_body[0][1] - 10)
-
-    def turn_down(x):
-        self.snake_body[0] = (self.snake_body[0][0],
-        self.snake_body[0][1] + 10)
-
-    def turn_left(x):
-        self.snake_body[0] = (self.snake_body[0][0] - 10,
-        self.snake_body[0][1])
-
-    def turn_right(x):
-        self.snake_body[0] = (self.snake_body[0][0] + 10,
-        self.snake_body[0][1])
-
 
