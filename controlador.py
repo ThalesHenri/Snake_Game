@@ -34,11 +34,10 @@ run = True
 # Game loop
 while run:
     clock.tick(10)  # our clock object will set the game fps
+    snake_obj.move()
     for event in pygame.event.get():#  event catcher for inputs
         if event.type == QUIT:
             pygame.quit()
-        snake_obj.move()
-
         if event.type == KEYDOWN:
             if event.key == K_UP and snake_obj.snake_direction != snake_obj.DOWN:
                 snake_obj.snake_direction = snake_obj.UP
@@ -48,7 +47,6 @@ while run:
                 snake_obj.snake_direction = snake_obj.LEFT
             if event.key == K_RIGHT and snake_obj.snake_direction != snake_obj.LEFT:
                 snake_obj.snake_direction = snake_obj.RIGHT
-
 
     if colision(snake_obj.snake_body[0], apple_obj.position):
         apple_obj.onGrid_Random_Spawn()
