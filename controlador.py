@@ -37,15 +37,17 @@ while run:
     for event in pygame.event.get():#  event catcher for inputs
         if event.type == QUIT:
             pygame.quit()
+        snake_obj.move()
+
         if event.type == KEYDOWN:
             if event.key == K_UP and snake_obj.snake_direction != snake_obj.DOWN:
-                snake_obj.move_up()
+                snake_obj.snake_direction = snake_obj.UP
             if event.key == K_DOWN and snake_obj.snake_direction != snake_obj.UP:
-                snake_obj.move_down()
+                snake_obj.snake_direction = snake_obj.DOWN
             if event.key == K_LEFT and snake_obj.snake_direction != snake_obj.RIGHT:
-                snake_obj.move_left()
+                snake_obj.snake_direction = snake_obj.LEFT
             if event.key == K_RIGHT and snake_obj.snake_direction != snake_obj.LEFT:
-                snake_obj.move_right()
+                snake_obj.snake_direction = snake_obj.RIGHT
 
 
     if colision(snake_obj.snake_body[0], apple_obj.position):
