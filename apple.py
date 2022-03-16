@@ -15,7 +15,3 @@ class Apple:
         self.x = (x // 10 * 10)
         self.y = (y // 10 * 10)
         self.position = self.x, self.y
-        return self.position
-
-
-
