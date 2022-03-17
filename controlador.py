@@ -6,6 +6,17 @@ from pygame.locals import *
 """Functions"""
 
 
+def show_score(choice, color, font, size):
+    score_font = pygame.font.SysFont(font, size)
+    score_surface = score_font.render("Score: " + str(R), True, color)
+    score_rect = score_surface.get_rect()
+    if choice == 1:
+        score_rect.midtop = (600 / 10, 15)
+    else:
+        score_rect.midtop = (600 / 2, 600/ 1.25 )
+    SCREEN.blit(score_surface, score_rect)
+
+
 def colision(c1, c2):
     return (c1[0] == c2[0]) and (c1[1] == c2[1])
 
@@ -16,7 +27,7 @@ BLACK = 0, 0, 0
 WHITE = 255, 255, 255
 RED = 255, 0, 0
 
-
+R = 0
 pygame.init()
 
 """Screen"""
@@ -52,13 +63,15 @@ while run:
     if colision(snake_obj.snake_body[0], apple_obj.position):  # Snake eating
         apple_obj.onGrid_Random_Spawn()
         snake_obj.snake_body.append((0, 0))
+        R += 1
+     # R will be the score
 
     snake_obj.move()
+    show_score(1, WHITE, 'consolas', 20)  # need to fix
 
-    for f in range(1, len(snake_obj.snake_body)):
+    for f in range(1, len(snake_obj.snake_body)):  # Game Over conditions
         if colision(snake_obj.snake_body[0], snake_obj.snake_body[f]):
-            print('you died!')
-
+            pass
     """SCREEN OBJECTS"""
     SCREEN.fill(BLACK)
     SCREEN.blit(apple_obj.apple, apple_obj.position)
