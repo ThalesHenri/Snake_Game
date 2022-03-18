@@ -13,6 +13,18 @@ def colision(c1, c2):
     return (c1[0] == c2[0]) and (c1[1] == c2[1])
 
 
+def game_over():
+    run = False
+    game_over_loop = True
+    while game_over_loop:
+        for event in pygame.event.get():  # event catcher for inputs
+            if event.type == QUIT:
+                pygame.quit()
+        game_over_text = font.render('Game Over! Your score was: ' + str(score), 1, (WHITE))
+        SCREEN.fill(BLACK)
+        SCREEN.blit(game_over_text, (10, 300))
+        pygame.display.update()
+
 """Colors"""
 
 BLACK = 0, 0, 0
@@ -37,10 +49,10 @@ apple_obj.apple.fill(RED)
 apple_obj.onGrid_Random_Spawn()  # position get
 run = True
 
-# Game loop
+"""Game loop"""
 while run:
     clock.tick(10)  # our clock object will set the game fps
-    for event in pygame.event.get():#  event catcher for inputs
+    for event in pygame.event.get():  # event catcher for inputs
         if event.type == QUIT:
             pygame.quit()
         if event.type == KEYDOWN:
@@ -61,7 +73,8 @@ while run:
 
     for f in range(1, len(snake_obj.snake_body)):  # Game Over conditions
         if colision(snake_obj.snake_body[0], snake_obj.snake_body[f]):
-            pass
+            game_over()
+
     """SCREEN OBJECTS"""
     SCREEN.fill(BLACK)
     SCREEN.blit(apple_obj.apple, apple_obj.position)
