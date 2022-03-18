@@ -3,19 +3,11 @@ from apple import Apple
 import pygame
 from pygame.locals import *
 
+pygame.init()
 """Functions"""
-
-
-def show_score(choice, color, font, size):
-    score_font = pygame.font.SysFont(font, size)
-    score_surface = score_font.render("Score: " + str(R), True, color)
-    score_rect = score_surface.get_rect()
-    if choice == 1:
-        score_rect.midtop = (600 / 10, 15)
-    else:
-        score_rect.midtop = (600 / 2, 600/ 1.25 )
-    SCREEN.blit(score_surface, score_rect)
-
+def show_score():
+    text = font.render('Score: ' + str(score), 1, (WHITE))
+    SCREEN.blit(text, (450, 10))
 
 def colision(c1, c2):
     return (c1[0] == c2[0]) and (c1[1] == c2[1])
@@ -27,7 +19,8 @@ BLACK = 0, 0, 0
 WHITE = 255, 255, 255
 RED = 255, 0, 0
 
-R = 0
+score = 0  # score variable
+font = pygame.font.SysFont('comicsans', 30, True)
 pygame.init()
 
 """Screen"""
@@ -59,15 +52,12 @@ while run:
                 snake_obj.snake_direction = snake_obj.LEFT
             if event.key == K_RIGHT and snake_obj.snake_direction != snake_obj.LEFT:
                 snake_obj.snake_direction = snake_obj.RIGHT
-
     if colision(snake_obj.snake_body[0], apple_obj.position):  # Snake eating
         apple_obj.onGrid_Random_Spawn()
         snake_obj.snake_body.append((0, 0))
-        R += 1
-     # R will be the score
+        score += 1  # score incrementation
 
     snake_obj.move()
-    show_score(1, WHITE, 'consolas', 20)  # need to fix
 
     for f in range(1, len(snake_obj.snake_body)):  # Game Over conditions
         if colision(snake_obj.snake_body[0], snake_obj.snake_body[f]):
@@ -75,6 +65,7 @@ while run:
     """SCREEN OBJECTS"""
     SCREEN.fill(BLACK)
     SCREEN.blit(apple_obj.apple, apple_obj.position)
+    show_score()
     for pos in snake_obj.snake_body:
         SCREEN.blit(snake_obj.snake_skin, pos)
     pygame.display.update()
