@@ -8,9 +8,9 @@ pygame.init()
 def show_score():
     text = font.render('Score: ' + str(score), 1, (WHITE))
     SCREEN.blit(text, (450, 10))
-
 def colision(c1, c2):
     return (c1[0] == c2[0]) and (c1[1] == c2[1])
+
 
 
 def game_over():
@@ -25,14 +25,17 @@ def game_over():
         SCREEN.blit(game_over_text, (10, 300))
         pygame.display.update()
 
+
 """Colors"""
 
 BLACK = 0, 0, 0
 WHITE = 255, 255, 255
 RED = 255, 0, 0
 
+
 score = 0  # score variable
 font = pygame.font.SysFont('comicsans', 30, True)
+
 pygame.init()
 
 """Screen"""
@@ -43,6 +46,7 @@ pygame.display.set_caption('Snake Game')
 
 clock = pygame.time.Clock()  # this will be our clock object
 snake_obj = Snake()  # this will be our snake object
+
 snake_obj.snake_skin.fill(WHITE)
 apple_obj = Apple()
 apple_obj.apple.fill(RED)
@@ -68,17 +72,17 @@ while run:
         apple_obj.onGrid_Random_Spawn()
         snake_obj.snake_body.append((0, 0))
         score += 1  # score incrementation
-
     snake_obj.move()
 
     for f in range(1, len(snake_obj.snake_body)):  # Game Over conditions
         if colision(snake_obj.snake_body[0], snake_obj.snake_body[f]):
             game_over()
-
+            
     """SCREEN OBJECTS"""
     SCREEN.fill(BLACK)
     SCREEN.blit(apple_obj.apple, apple_obj.position)
     show_score()
     for pos in snake_obj.snake_body:
         SCREEN.blit(snake_obj.snake_skin, pos)
+        
     pygame.display.update()
