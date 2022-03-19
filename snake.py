@@ -17,13 +17,14 @@ class Snake:
             self.snake_body[c - 1][1])
         if self.snake_direction == 0:  # UP
             self.snake_body[0] = (self.snake_body[0][0],
-            self.snake_body[0][1] - 10)
+            (self.snake_body[0][1] - 10) % 600)
         if self.snake_direction == 1:  # DOWN
             self.snake_body[0] = (self.snake_body[0][0],
-            self.snake_body[0][1] + 10)
+            (self.snake_body[0][1] + 10) % 600)
         if self.snake_direction == 3:  # RIGHT
-            self.snake_body[0] = (self.snake_body[0][0] + 10,
+            self.snake_body[0] = ((self.snake_body[0][0] + 10) % 600,
             self.snake_body[0][1])
-        if self.snake_direction == 2: # LEFT
-            self.snake_body[0] = (self.snake_body[0][0] - 10,
+        if self.snake_direction == 2:  # LEFT
+            self.snake_body[0] = ((self.snake_body[0][0] - 10) % 600,
             self.snake_body[0][1])
+
